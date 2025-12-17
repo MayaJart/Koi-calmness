@@ -1,0 +1,57 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>Koi Pond</title>
+  <style>
+    html, body {
+      margin: 0;
+      padding: 0;
+      overflow: hidden;
+      background: #0b6fa4;
+    }
+    canvas {
+      display: block;
+    }
+  </style>
+</head>
+<body>
+
+<canvas id="pond"></canvas>
+
+<script>
+const canvas = document.getElementById('pond');
+const ctx = canvas.getContext('2d');
+
+function resize() {
+  canvas.width = innerWidth;
+  canvas.height = innerHeight;
+}
+window.addEventListener('resize', resize);
+resize();
+
+/* LOAD ONE KOI IMAGE */
+const koiImg = new Image();
+koiImg.src = 'transparent-default-koi1.png';
+
+/* SIMPLE DRAW */
+function draw() {
+  ctx.clearRect(0, 0, canvas.width, canvas.height);
+
+  ctx.drawImage(
+    koiImg,
+    canvas.width / 2 - 75,
+    canvas.height / 2 - 40,
+    150,
+    80
+  );
+
+  requestAnimationFrame(draw);
+}
+
+koiImg.onload = draw;
+</script>
+
+</body>
+</html>
